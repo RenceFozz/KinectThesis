@@ -1,0 +1,11 @@
+c:\users\lnbfo\documents\visual studio 2017\Projects\Kinect_Coor_Example\Kinect_Coor_Example\obj\Debug\Kinect_Coor_Example.csprojResolveAssemblyReference.cache
+c:\users\lnbfo\documents\visual studio 2017\Projects\Kinect_Coor_Example\Kinect_Coor_Example\obj\Debug\Kinect_Coor_Example.Properties.Resources.resources
+c:\users\lnbfo\documents\visual studio 2017\Projects\Kinect_Coor_Example\Kinect_Coor_Example\obj\Debug\Kinect_Coor_Example.csproj.GenerateResource.Cache
+c:\users\lnbfo\documents\visual studio 2017\Projects\Kinect_Coor_Example\Kinect_Coor_Example\bin\Debug\Kinect_Coor_Example.exe.config
+c:\users\lnbfo\documents\visual studio 2017\Projects\Kinect_Coor_Example\Kinect_Coor_Example\bin\Debug\Kinect_Coor_Example.exe
+c:\users\lnbfo\documents\visual studio 2017\Projects\Kinect_Coor_Example\Kinect_Coor_Example\bin\Debug\Kinect_Coor_Example.pdb
+c:\users\lnbfo\documents\visual studio 2017\Projects\Kinect_Coor_Example\Kinect_Coor_Example\bin\Debug\Microsoft.Kinect.dll
+c:\users\lnbfo\documents\visual studio 2017\Projects\Kinect_Coor_Example\Kinect_Coor_Example\bin\Debug\Microsoft.Kinect.xml
+c:\users\lnbfo\documents\visual studio 2017\Projects\Kinect_Coor_Example\Kinect_Coor_Example\obj\Debug\Kinect_Coor_Example.exe
+c:\users\lnbfo\documents\visual studio 2017\Projects\Kinect_Coor_Example\Kinect_Coor_Example\obj\Debug\Kinect_Coor_Example.pdb
+C:\Users\lnbfo\documents\visual studio 2017\Projects\Kinect_Coor_Example\Kinect_Coor_Example\obj\Debug\Kinect_Coor_Example.DataCollector.resources
