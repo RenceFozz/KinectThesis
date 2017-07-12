@@ -104,6 +104,8 @@ namespace Kinect_Coor_Example
             this.lbl_RFootY = new System.Windows.Forms.Label();
             this.lbl_RFootZ = new System.Windows.Forms.Label();
             this.lbl_RFootX = new System.Windows.Forms.Label();
+            this.btn_Start = new System.Windows.Forms.Button();
+            this.btn_Stop = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lbl_SpineX
@@ -754,9 +756,33 @@ namespace Kinect_Coor_Example
             this.lbl_RFootX.TabIndex = 68;
             this.lbl_RFootX.Text = "RightFootX";
             // 
+            // btn_Start
+            // 
+            this.btn_Start.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Start.Location = new System.Drawing.Point(349, 595);
+            this.btn_Start.Name = "btn_Start";
+            this.btn_Start.Size = new System.Drawing.Size(121, 45);
+            this.btn_Start.TabIndex = 73;
+            this.btn_Start.Text = "START";
+            this.btn_Start.UseVisualStyleBackColor = true;
+            this.btn_Start.Click += new System.EventHandler(this.btn_Start_Click);
+            // 
+            // btn_Stop
+            // 
+            this.btn_Stop.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Stop.Location = new System.Drawing.Point(715, 595);
+            this.btn_Stop.Name = "btn_Stop";
+            this.btn_Stop.Size = new System.Drawing.Size(105, 45);
+            this.btn_Stop.TabIndex = 74;
+            this.btn_Stop.Text = "STOP";
+            this.btn_Stop.UseVisualStyleBackColor = true;
+            this.btn_Stop.Click += new System.EventHandler(this.btn_Stop_Click);
+            // 
             // DataCollector
             // 
             this.ClientSize = new System.Drawing.Size(1182, 653);
+            this.Controls.Add(this.btn_Stop);
+            this.Controls.Add(this.btn_Start);
             this.Controls.Add(this.txt_12_RFoot_X);
             this.Controls.Add(this.txt_12_RFoot_Y);
             this.Controls.Add(this.txt_12_RFoot_Z);
@@ -830,6 +856,7 @@ namespace Kinect_Coor_Example
             this.Controls.Add(this.lbl_SpineY);
             this.Controls.Add(this.lbl_SpineX);
             this.Name = "DataCollector";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -909,6 +936,10 @@ namespace Kinect_Coor_Example
         private TextBox txt_12_RFoot_X; // Right Foot
         private TextBox txt_12_RFoot_Y;
         private TextBox txt_12_RFoot_Z;
+
+        //Buttons
+        private Button btn_Start;
+        private Button btn_Stop;
     }
 }
 

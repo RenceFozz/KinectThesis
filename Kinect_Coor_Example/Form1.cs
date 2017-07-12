@@ -43,14 +43,18 @@ namespace Kinect_Coor_Example
 
         public DataCollector() {
             InitializeComponent();
-            InitializeKinect();
+            InitializeVar();
+        }
+
+        public void InitializeVar() {
+            btn_Stop.Enabled = false;
+            kS = KinectSensor.GetDefault();
+            bFR = kS.BodyFrameSource.OpenReader();
+            csv = new StringBuilder();
         }
 
         public void InitializeKinect() {
-            kS = KinectSensor.GetDefault();
-            bFR = kS.BodyFrameSource.OpenReader();
             FilePath = Directory.GetCurrentDirectory() + "\\" + DateTime.Now.ToString("yyyy-MM-dd HH.mm.ss") + ".csv";
-            csv = new StringBuilder();
             /*XTextBoxes = GetTextBoxes("_X");
             YTextBoxes = GetTextBoxes("_Y");
             ZTextBoxes = GetTextBoxes("_Z");
@@ -100,8 +104,7 @@ namespace Kinect_Coor_Example
             return temp;
         }*/
 
-        private void Reader_FrameArrived(object sender, BodyFrameArrivedEventArgs e)
-        {
+        private void Reader_FrameArrived(object sender, BodyFrameArrivedEventArgs e){
             bool dataReceived = false;
             using (BodyFrame bodyFrame = e.FrameReference.AcquireFrame())
             {
@@ -148,6 +151,19 @@ namespace Kinect_Coor_Example
                 }
                 File.WriteAllText(FilePath, csv.ToString());
             }
+        }
+
+        private void btn_Start_Click(object sender, EventArgs e) {
+            btn_Start.Enabled = false;
+            InitializeKinect();
+            btn_Stop.Enabled = true;
+        }
+
+        private void btn_Stop_Click(object sender, EventArgs e) {
+            btn_Stop.Enabled = false;
+            kS.Close();
+            InitializeVar();
+            btn_Start.Enabled = true;
         }
     }
 }
