@@ -37,9 +37,6 @@ namespace Kinect_Coor_Example
             JointType.KneeLeft, JointType.KneeRight, JointType.ElbowLeft,
             JointType.ElbowRight, JointType.SpineMid, JointType.HandLeft,
             JointType.HandRight, JointType.FootLeft, JointType.FootRight};
-        /*List<String> XTextBoxes = null;
-        List<String> YTextBoxes = null;
-        List<String> ZTextBoxes = null;*/
 
         public DataCollector() {
             InitializeComponent();
@@ -54,11 +51,9 @@ namespace Kinect_Coor_Example
         }
 
         public void InitializeKinect() {
+            lbl_Status.Text = "INITIALIZING...";
             FilePath = Directory.GetCurrentDirectory() + "\\" + DateTime.Now.ToString("yyyy-MM-dd HH.mm.ss") + ".csv";
-            /*XTextBoxes = GetTextBoxes("_X");
-            YTextBoxes = GetTextBoxes("_Y");
-            ZTextBoxes = GetTextBoxes("_Z");
-            Console.WriteLine(FilePath);
+            /*Console.WriteLine(FilePath);
             ColorFrameReader reader = kS.ColorFrameSource.OpenReader();
             reader.FrameArrived += FrameArrived;*/
 
@@ -82,6 +77,7 @@ namespace Kinect_Coor_Example
             }
 
             if (bFR != null) {
+                lbl_Status.Text = "RECORDING...";
                 bFR.FrameArrived += Reader_FrameArrived;
             }
         }
@@ -91,17 +87,6 @@ namespace Kinect_Coor_Example
                 double fps = 1.0 / frame.ColorCameraSettings.FrameInterval.TotalSeconds;
                 Console.WriteLine(fps);
             }
-        }
-
-        public List<String> GetTextBoxes(String S){
-            List<String> temp = new List<String>();
-            foreach (Control X in this.Controls){
-                if (X is TextBox && X.Name.Contains(S)){
-                    temp.Add(X.Name);
-                }
-            }
-            temp.Sort();
-            return temp;
         }*/
 
         private void Reader_FrameArrived(object sender, BodyFrameArrivedEventArgs e){
@@ -130,12 +115,6 @@ namespace Kinect_Coor_Example
                         }
 
                         for (int i = 0; i < jointData.Length; i++) {
-                            /*TextBox temp1 = this.Controls.Find(XTextBoxes[i].ToString(), true).FirstOrDefault() as TextBox;
-                            TextBox temp2 = this.Controls.Find(YTextBoxes[i].ToString(), true).FirstOrDefault() as TextBox;
-                            TextBox temp3 = this.Controls.Find(ZTextBoxes[i].ToString(), true).FirstOrDefault() as TextBox;
-                            temp1.Text = jointData[i].Position.X.ToString("#.###");
-                            temp2.Text = jointData[i].Position.Y.ToString("#.###");
-                            temp3.Text = jointData[i].Position.Z.ToString("#.###");*/
                             switch (i < (jointData.Length - 1) ) {
                                 case true: temp = "{0},{1},{2},";  break;
                                 case false: temp = "{0},{1},{2}"; break;
