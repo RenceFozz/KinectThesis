@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Kinect;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
 
 namespace Kinect_Coor_Example
 {
@@ -30,9 +32,12 @@ namespace Kinect_Coor_Example
 
         KinectSensor kS = null;
         BodyFrameReader bFR = null;
+        MultiSourceFrameReader mSFR = null;
         Body[] bodies = null;
         String FilePath = null;
         StringBuilder csv = null;
+        int frameNo = 1;
+        int timeStamp = 0;
         JointType[] jointENum = {JointType.Head, JointType.ShoulderLeft, JointType.ShoulderRight, JointType.SpineShoulder,
             JointType.KneeLeft, JointType.KneeRight, JointType.ElbowLeft,
             JointType.ElbowRight, JointType.SpineMid, JointType.HandLeft,
@@ -57,7 +62,8 @@ namespace Kinect_Coor_Example
             ColorFrameReader reader = kS.ColorFrameSource.OpenReader();
             reader.FrameArrived += FrameArrived;*/
 
-            String top = ("HeadX, HeadY, HeadZ, "+
+            String top = ("TimeStamp, FrameNo" + 
+                "HeadX, HeadY, HeadZ, "+
                 "ShoulderLeftX, ShoulderLeftY, ShoulderLeftZ, " +
                 "ShoulderRightX, ShoulderRightY, ShoulderRightZ, " +
                 "ShoulderCenterX, ShoulderCenterY, ShoulderCenterZ, " +
@@ -114,6 +120,14 @@ namespace Kinect_Coor_Example
                             jointData[a] = joints[ jointENum[a] ];
                         }
 
+                        switch (frameNo % 30 == 1) {
+                            case true: timeStamp++; break;
+                            case false: break;
+                        }
+
+                        newLine = string.Format("{0},{1},", timeStamp.ToString(), frameNo.ToString());
+                        csv.Append(newLine);
+
                         for (int i = 0; i < jointData.Length; i++) {
                             switch (i < (jointData.Length - 1) ) {
                                 case true: temp = "{0},{1},{2},";  break;
@@ -126,6 +140,7 @@ namespace Kinect_Coor_Example
                             csv.Append(newLine);
                         }
                         csv.Append("\n");
+                        frameNo++;
                     }
                 }
                 File.WriteAllText(FilePath, csv.ToString());
@@ -140,9 +155,42 @@ namespace Kinect_Coor_Example
 
         private void btn_Stop_Click(object sender, EventArgs e) {
             btn_Stop.Enabled = false;
+            lbl_Status.Text = "NOT RECORDING";
             kS.Close();
             InitializeVar();
             btn_Start.Enabled = true;
+        }
+
+        private void DataCollector_Load(object sender, EventArgs e) {
+            kS = KinectSensor.GetDefault();
+            if (kS != null) {
+                kS.Open();
+            }
+
+            mSFR = kS.OpenMultiSourceFrameReader(FrameSourceTypes.Color);
+            mSFR.MultiSourceFrameArrived += mSFR_MultiSourceFrameArrived;
+        }
+
+        void mSFR_MultiSourceFrameArrived(object sender, MultiSourceFrameArrivedEventArgs e) {
+            var reference = e.FrameReference.AcquireFrame();
+
+            using (var frame = reference.ColorFrameReference.AcquireFrame()) {
+                if (frame != null) {
+                    var width = frame.FrameDescription.Width;
+                    var height = frame.FrameDescription.Height;
+                    var data = new byte[width * height * 32 / 8];
+                    frame.CopyConvertedFrameDataToArray(data, ColorImageFormat.Bgra);
+
+                    var bitmap = new Bitmap(width, height, PixelFormat.Format32bppRgb);
+                    var bitMapData = bitmap.LockBits(new Rectangle(0,0,bitmap.Width,bitmap.Height), 
+                        ImageLockMode.WriteOnly, bitmap.PixelFormat);
+
+                    Marshal.Copy(data, 0, bitMapData.Scan0, data.Length);
+                    bitmap.UnlockBits(bitMapData);
+                    bitmap.RotateFlip(RotateFlipType.Rotate180FlipY);
+                    picBox_MainCam.Image = bitmap;
+                }
+            }
         }
     }
 }

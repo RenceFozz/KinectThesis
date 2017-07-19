@@ -35,6 +35,8 @@ namespace Kinect_Coor_Example
             this.btn_Start = new System.Windows.Forms.Button();
             this.btn_Stop = new System.Windows.Forms.Button();
             this.lbl_Status = new System.Windows.Forms.Label();
+            this.picBox_MainCam = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picBox_MainCam)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_Start
@@ -63,20 +65,32 @@ namespace Kinect_Coor_Example
             // 
             this.lbl_Status.AutoSize = true;
             this.lbl_Status.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Status.Location = new System.Drawing.Point(362, 21);
+            this.lbl_Status.Location = new System.Drawing.Point(368, 17);
             this.lbl_Status.Name = "lbl_Status";
             this.lbl_Status.Size = new System.Drawing.Size(279, 36);
             this.lbl_Status.TabIndex = 75;
             this.lbl_Status.Text = "NOT RECORDING";
             // 
+            // picBox_MainCam
+            // 
+            this.picBox_MainCam.Location = new System.Drawing.Point(98, 63);
+            this.picBox_MainCam.Name = "picBox_MainCam";
+            this.picBox_MainCam.Size = new System.Drawing.Size(800, 450);
+            this.picBox_MainCam.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBox_MainCam.TabIndex = 76;
+            this.picBox_MainCam.TabStop = false;
+            // 
             // DataCollector
             // 
-            this.ClientSize = new System.Drawing.Size(982, 453);
+            this.ClientSize = new System.Drawing.Size(982, 553);
+            this.Controls.Add(this.picBox_MainCam);
             this.Controls.Add(this.lbl_Status);
             this.Controls.Add(this.btn_Stop);
             this.Controls.Add(this.btn_Start);
             this.Name = "DataCollector";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.DataCollector_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.picBox_MainCam)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -88,6 +102,7 @@ namespace Kinect_Coor_Example
         private Button btn_Start;
         private Button btn_Stop;
         private Label lbl_Status;
+        private PictureBox picBox_MainCam;
     }
 }
 
