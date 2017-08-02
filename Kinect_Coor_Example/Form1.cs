@@ -33,6 +33,7 @@ namespace Kinect_Coor_Example
         KinectSensor kS = null;
         BodyFrameReader bFR = null;
         MultiSourceFrameReader mSFR = null;
+        ColorFrameReader cFR = null;
         Body[] bodies = null;
         String FilePath = null;
         StringBuilder csv = null;
@@ -52,15 +53,14 @@ namespace Kinect_Coor_Example
             btn_Stop.Enabled = false;
             kS = KinectSensor.GetDefault();
             bFR = kS.BodyFrameSource.OpenReader();
+            cFR = kS.ColorFrameSource.OpenReader();
             csv = new StringBuilder();
         }
 
         public void InitializeKinect() {
             lbl_Status.Text = "INITIALIZING...";
             FilePath = Directory.GetCurrentDirectory() + "\\" + DateTime.Now.ToString("yyyy-MM-dd HH.mm.ss") + ".csv";
-            /*Console.WriteLine(FilePath);
-            ColorFrameReader reader = kS.ColorFrameSource.OpenReader();
-            reader.FrameArrived += FrameArrived;*/
+            /*Console.WriteLine(FilePath);*/
 
             String top = ("TimeStamp, FrameNo" + 
                 "HeadX, HeadY, HeadZ, "+
@@ -85,15 +85,17 @@ namespace Kinect_Coor_Example
             if (bFR != null) {
                 lbl_Status.Text = "RECORDING...";
                 bFR.FrameArrived += Reader_FrameArrived;
+                cFR.FrameArrived += FrameArrived;
             }
         }
 
-        /*private void FrameArrived(object sender, ColorFrameArrivedEventArgs args){
+        private void FrameArrived(object sender, ColorFrameArrivedEventArgs args){
             using (var frame = args.FrameReference.AcquireFrame()){
                 double fps = 1.0 / frame.ColorCameraSettings.FrameInterval.TotalSeconds;
                 Console.WriteLine(fps);
+                lbl_FrameRate.Text = String.Format("Frame Rate: {0} fps", fps.ToString("0.00"));
             }
-        }*/
+        }
 
         private void Reader_FrameArrived(object sender, BodyFrameArrivedEventArgs e){
             bool dataReceived = false;

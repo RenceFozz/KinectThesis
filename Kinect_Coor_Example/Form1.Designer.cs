@@ -36,6 +36,7 @@ namespace Kinect_Coor_Example
             this.btn_Stop = new System.Windows.Forms.Button();
             this.lbl_Status = new System.Windows.Forms.Label();
             this.picBox_MainCam = new System.Windows.Forms.PictureBox();
+            this.lbl_FrameRate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picBox_MainCam)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,9 +81,19 @@ namespace Kinect_Coor_Example
             this.picBox_MainCam.TabIndex = 76;
             this.picBox_MainCam.TabStop = false;
             // 
+            // lbl_FrameRate
+            // 
+            this.lbl_FrameRate.AutoSize = true;
+            this.lbl_FrameRate.Location = new System.Drawing.Point(109, 520);
+            this.lbl_FrameRate.Name = "lbl_FrameRate";
+            this.lbl_FrameRate.Size = new System.Drawing.Size(133, 17);
+            this.lbl_FrameRate.TabIndex = 77;
+            this.lbl_FrameRate.Text = "Frame Rate: 0.0 fps";
+            // 
             // DataCollector
             // 
             this.ClientSize = new System.Drawing.Size(982, 553);
+            this.Controls.Add(this.lbl_FrameRate);
             this.Controls.Add(this.picBox_MainCam);
             this.Controls.Add(this.lbl_Status);
             this.Controls.Add(this.btn_Stop);
@@ -103,6 +114,7 @@ namespace Kinect_Coor_Example
         private Button btn_Stop;
         private Label lbl_Status;
         private PictureBox picBox_MainCam;
+        private Label lbl_FrameRate;
     }
 }
 
