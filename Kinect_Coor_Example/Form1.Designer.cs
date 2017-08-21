@@ -37,6 +37,7 @@ namespace Kinect_Coor_Example
             this.lbl_Status = new System.Windows.Forms.Label();
             this.picBox_MainCam = new System.Windows.Forms.PictureBox();
             this.lbl_FrameRate = new System.Windows.Forms.Label();
+            this.lbl_StatusHolder = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picBox_MainCam)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,12 +66,12 @@ namespace Kinect_Coor_Example
             // lbl_Status
             // 
             this.lbl_Status.AutoSize = true;
-            this.lbl_Status.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Status.Location = new System.Drawing.Point(368, 17);
+            this.lbl_Status.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_Status.Location = new System.Drawing.Point(471, 19);
             this.lbl_Status.Name = "lbl_Status";
-            this.lbl_Status.Size = new System.Drawing.Size(279, 36);
+            this.lbl_Status.Size = new System.Drawing.Size(196, 32);
             this.lbl_Status.TabIndex = 75;
-            this.lbl_Status.Text = "NOT RECORDING";
+            this.lbl_Status.Text = "Not Recording";
             // 
             // picBox_MainCam
             // 
@@ -90,9 +91,20 @@ namespace Kinect_Coor_Example
             this.lbl_FrameRate.TabIndex = 77;
             this.lbl_FrameRate.Text = "Frame Rate: 0.0 fps";
             // 
+            // lbl_StatusHolder
+            // 
+            this.lbl_StatusHolder.AutoSize = true;
+            this.lbl_StatusHolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_StatusHolder.Location = new System.Drawing.Point(328, 19);
+            this.lbl_StatusHolder.Name = "lbl_StatusHolder";
+            this.lbl_StatusHolder.Size = new System.Drawing.Size(149, 32);
+            this.lbl_StatusHolder.TabIndex = 78;
+            this.lbl_StatusHolder.Text = "STATUS: ";
+            // 
             // DataCollector
             // 
             this.ClientSize = new System.Drawing.Size(982, 553);
+            this.Controls.Add(this.lbl_StatusHolder);
             this.Controls.Add(this.lbl_FrameRate);
             this.Controls.Add(this.picBox_MainCam);
             this.Controls.Add(this.lbl_Status);
@@ -115,6 +127,7 @@ namespace Kinect_Coor_Example
         private Label lbl_Status;
         private PictureBox picBox_MainCam;
         private Label lbl_FrameRate;
+        private Label lbl_StatusHolder;
     }
 }
 

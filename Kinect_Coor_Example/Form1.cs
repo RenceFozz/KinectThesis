@@ -58,7 +58,7 @@ namespace Kinect_Coor_Example
         }
 
         public void InitializeKinect() {
-            lbl_Status.Text = "INITIALIZING...";
+            lbl_Status.Text = "Initializing...";
             FilePath = Directory.GetCurrentDirectory() + "\\" + DateTime.Now.ToString("yyyy-MM-dd HH.mm.ss") + ".csv";
             /*Console.WriteLine(FilePath);*/
 
@@ -83,7 +83,7 @@ namespace Kinect_Coor_Example
             }
 
             if (bFR != null) {
-                lbl_Status.Text = "RECORDING...";
+                lbl_Status.Text = "Recording";
                 bFR.FrameArrived += Reader_FrameArrived;
                 cFR.FrameArrived += FrameArrived;
             }
@@ -157,7 +157,7 @@ namespace Kinect_Coor_Example
 
         private void btn_Stop_Click(object sender, EventArgs e) {
             btn_Stop.Enabled = false;
-            lbl_Status.Text = "NOT RECORDING";
+            lbl_Status.Text = "Not Recording";
             kS.Close();
             InitializeVar();
             btn_Start.Enabled = true;
